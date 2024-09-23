@@ -1,0 +1,22 @@
+/* Media queries mixins */
+@mixin respond-to($name) {
+    $max: map-get($breakpoints, $name);
+
+    @if $max {
+        @media only screen and (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin font($alias, $name, $weight) {
+    @font-face {
+        font-family: $alias;
+        src: url("~assets/fonts/" + $name + ".otf") format("opentype");
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}

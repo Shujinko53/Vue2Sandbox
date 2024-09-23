@@ -1,0 +1,21 @@
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .3s;
+}
+
+.fade-enter,
+.fade-leave-active {
+    position: absolute;
+    opacity: 0;
+}
+
+.appear-enter-active,
+.appear-leave-active {
+    transition: opacity .4s ease, transform .4s ease;
+}
+
+.appear-enter,
+.appear-leave-active {
+    opacity: 0;
+    transform: translateY(64px);
+}

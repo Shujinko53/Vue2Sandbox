@@ -1,0 +1,24 @@
+{
+  "name": "Vue2Sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/style-resources": "^1.2.2",
+    "core-js": "^3.25.3",
+    "nuxt": "^2.15.8",
+    "sass": "^1.79.3",
+    "sass-loader": "^10.4.1",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10",
+    "vue-the-mask": "^0.11.1",
+    "vue2-touch-events": "^3.2.3",
+    "webpack": "^4.46.0"
+  }
+}
