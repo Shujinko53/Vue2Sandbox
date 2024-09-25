@@ -1,9 +1,7 @@
 <template>
 	<div class="Main-page">
 		<!--	<Tutorial/>/-->
-		<Switcher
-			:chapters="chapters"
-		/>
+		<Switcher />
 	</div>
 
 </template>
@@ -23,20 +21,6 @@ export default {
 	data() {
 		return {
 			activeChapter: '',
-			chapters: [
-				{
-					id: 1,
-					title: 'First'
-				},
-				{
-					id: 2,
-					title: 'Second'
-				},
-				{
-					id: 3,
-					title: 'Third'
-				},
-			],
 		};
 	},
 

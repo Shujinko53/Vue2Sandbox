@@ -5,7 +5,7 @@
 				v-for="(chapter, idx) of chapters"
 				:key="idx"
 				:class="['Switcher_item', {'Switcher_item-active': chapter.id === activeItem}]"
-				@click="changeChapter(chapter)"
+				@click="changeChapter(chapter, $event)"
 				v-html="chapter.title"
 			></div>
 		</div>
@@ -21,7 +21,20 @@ export default {
 	props: {
 		chapters: {
 			type: Array,
-			default: () => [],
+			default: () => [
+				{
+					id: 1,
+					title: 'First'
+				},
+				{
+					id: 2,
+					title: 'Second'
+				},
+				{
+					id: 3,
+					title: 'Third'
+				},
+			],
 		},
 	},
 
@@ -36,13 +49,43 @@ export default {
 	},
 
 	mounted() {
+		// this.$nextTick(() => {
+		// 	const allElements = this.$el.querySelectorAll('.Switcher_item');
+		// 	const block = this.$el.querySelector('.Switcher_wrapper');
+		// 	const blockWidth = Math.round(block.getBoundingClientRect().width);
+		// 	const activeItemWidth = allElements[0].style.width;
+		// 	const roller = this.$el.querySelector('.Switcher_roller');
+		//
+		// 	Object.assign(roller.style, {
+		// 		left: 0,
+		// 		right: `${blockWidth - activeItemWidth}px`,
+		// 	});
+		// });
+		// this.animation();
 	},
 
 	methods: {
-		changeChapter(item) {
+		changeChapter(item, element) {
 			if (this.activeItem !== item.id) {
 				this.activeItem = item.id;
 			}
+
+			this.animation(element);
+		},
+
+		animation(element) {
+			const block = this.$el.querySelector('.Switcher_wrapper');
+			const blockWidth = Math.round(block.getBoundingClientRect().width);
+			const activeItemWidth = element?.target.getBoundingClientRect().width;
+			const activeItemLeft = element?.target.offsetLeft;
+			const roller = this.$el.querySelector('.Switcher_roller');
+			const rollerLeft = roller.offsetLeft;
+
+			Object.assign(roller.style, {
+				left: `${activeItemLeft}px`,
+				right: `${blockWidth - activeItemLeft - activeItemWidth}px`,
+				transitionDelay: `${activeItemLeft > rollerLeft ? '0s, 0.2s' : '0.2s, 0s'}`,
+			});
 		},
 	},
 }
@@ -62,9 +105,9 @@ export default {
 	&_wrapper {
 		display: flex;
 		width: 100%;
-		border: 1px solid $black;
+		border: 1px solid $blue;
 		border-radius: 4rem;
-		background-color: $gray-100;
+		background-color: $light-green;
 		white-space: nowrap;
 	}
 
@@ -97,12 +140,12 @@ export default {
 		line-height: 1;
 		text-align: center;
 		text-transform: uppercase;
-		color: $black;
+		color: $blue;
 		transition: color .4s ease, background-color .3s ease, box-shadow .3s ease;
 		cursor: pointer;
 
 		&-active {
-			color: $blue;
+			color: $gray-100;
 			cursor: default;
 		}
 	}
