@@ -1,2 +1,3 @@
-@include font("GHEA-Mariam", "GHEA-Mariam-Regular", 400);
-@include font("GHEA", "GHEA-Grapalat-Regular", 400);
+@include font("GHEA-Mariam", "GHEA-Mariam-Regular", 400, ".otf", "opentype");
+@include font("GHEA", "GHEA-Grapalat-Regular", 400, ".otf", "opentype");
+@include font("Poppins", "Poppins-Medium", 500, ".ttf", "truetype");
