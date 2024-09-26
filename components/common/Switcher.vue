@@ -21,7 +21,7 @@ export default {
 	props: {
 		chapters: {
 			type: Array,
-			default: () => [
+			default: () => ([
 				{
 					id: 1,
 					title: 'First'
@@ -34,7 +34,11 @@ export default {
 					id: 3,
 					title: 'Third'
 				},
-			],
+			]),
+		},
+		randomStart: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -47,10 +51,14 @@ export default {
 	computed: {
 		//
 	},
-	
+
 	mounted() {
 		this.$nextTick(() => {
-			this.startAnimation();
+			if (this.randomStart) {
+				this.randomStartAnimation();
+			} else {
+				this.startAnimation();
+			}
 		});
 	},
 
@@ -78,17 +86,30 @@ export default {
 			});
 		},
 
-		startAnimation() {
+		startAnimation(elementNumber = 0) {
 			const allElements = this.$el.querySelectorAll('.Switcher_item');
-			const activeItemWidth = allElements[0]?.getBoundingClientRect().width;
+			const activeItemWidth = allElements[elementNumber]?.getBoundingClientRect().width;
+			const activeItemLeft = allElements[elementNumber]?.offsetLeft;
 			const block = this.$el.querySelector('.Switcher_wrapper');
 			const blockWidth = Math.round(block?.getBoundingClientRect().width);
 			const roller = this.$el.querySelector('.Switcher_roller');
 
 			Object.assign(roller.style, {
-				right: `${blockWidth - activeItemWidth}px`,
+				left: `${activeItemLeft}px`,
+				right: `${blockWidth - activeItemLeft - activeItemWidth}px`,
 			});
 		},
+
+		randomStartAnimation() {
+			let randomElement = this.chapters.length ? Math.floor(Math.random() * (this.chapters.length)) : 0;
+
+			setTimeout(() => {
+				if (this.chapters.length) {
+					this.activeItem = this.chapters[randomElement].id;
+				}
+			}, 100);
+			this.startAnimation(randomElement);
+		}
 	},
 }
 </script>
@@ -97,8 +118,10 @@ export default {
 
 .Switcher {
 	position: relative;
+	overflow: hidden;
 	display: flex;
 	width: max-content;
+	border-radius: 4rem;
 	user-select: none;
 
 	&_wrapper {
@@ -140,7 +163,7 @@ export default {
 		text-align: center;
 		text-transform: uppercase;
 		color: $blue;
-		transition: color .4s ease, background-color .3s ease, box-shadow .3s ease;
+		transition: color .4s ease .1s, background-color .3s ease, box-shadow .3s ease;
 		cursor: pointer;
 
 		&-active {
