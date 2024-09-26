@@ -3,21 +3,21 @@
 		<!--	<Tutorial/>/-->
 		<Switcher />
 
-		<FormVisit />
+		<Calendar />
 	</div>
 
 </template>
 
 <script>
 import Switcher from '~/components/common/Switcher';
-import FormVisit from '@/components/common/FormVisit';
+import Calendar from '@/components/common/Calendar.vue';
 
 export default {
 	name: 'IndexPage',
 
 	components: {
 		Switcher,
-		FormVisit,
+		Calendar,
 	},
 
 	props: {},
@@ -43,7 +43,10 @@ export default {
 
 <style lang="scss">
 .Main-page {
+	display: flex;
+	flex-direction: column;
+	row-gap: 6rem;
 	min-height: 100vh;
-	padding: 2rem;
+	padding: 4rem;
 }
 </style>

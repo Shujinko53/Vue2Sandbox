@@ -163,7 +163,7 @@ export default {
 		text-align: center;
 		text-transform: uppercase;
 		color: $blue;
-		transition: color .4s ease .1s, background-color .3s ease, box-shadow .3s ease;
+		transition: color .4s ease .2s, background-color .3s ease, box-shadow .3s ease;
 		cursor: pointer;
 
 		&-active {
