@@ -47,21 +47,11 @@ export default {
 	computed: {
 		//
 	},
-
+	
 	mounted() {
-		// this.$nextTick(() => {
-		// 	const allElements = this.$el.querySelectorAll('.Switcher_item');
-		// 	const block = this.$el.querySelector('.Switcher_wrapper');
-		// 	const blockWidth = Math.round(block.getBoundingClientRect().width);
-		// 	const activeItemWidth = allElements[0].style.width;
-		// 	const roller = this.$el.querySelector('.Switcher_roller');
-		//
-		// 	Object.assign(roller.style, {
-		// 		left: 0,
-		// 		right: `${blockWidth - activeItemWidth}px`,
-		// 	});
-		// });
-		// this.animation();
+		this.$nextTick(() => {
+			this.startAnimation();
+		});
 	},
 
 	methods: {
@@ -87,6 +77,18 @@ export default {
 				transitionDelay: `${activeItemLeft > rollerLeft ? '0s, 0.2s' : '0.2s, 0s'}`,
 			});
 		},
+
+		startAnimation() {
+			const allElements = this.$el.querySelectorAll('.Switcher_item');
+			const activeItemWidth = allElements[0]?.getBoundingClientRect().width;
+			const block = this.$el.querySelector('.Switcher_wrapper');
+			const blockWidth = Math.round(block?.getBoundingClientRect().width);
+			const roller = this.$el.querySelector('.Switcher_roller');
+
+			Object.assign(roller.style, {
+				right: `${blockWidth - activeItemWidth}px`,
+			});
+		},
 	},
 }
 </script>
@@ -94,13 +96,10 @@ export default {
 <style lang="scss">
 
 .Switcher {
-	position: absolute;
-	top: 50%;
-	left: 50%;
+	position: relative;
 	display: flex;
 	width: max-content;
 	user-select: none;
-	transform: translate(-50%, -50%);
 
 	&_wrapper {
 		display: flex;
