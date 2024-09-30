@@ -1,8 +1,11 @@
 <template>
 	<div class="Calendar">
 		<div class="Calendar_select Calendar_select-date">
-			<div :class="['Calendar_head', {'open': open.date}, {'filled': choosenDay}]" @click="openCalendar">
-				{{ choosenDay ? `${choosenDay} ${endMonthsLetter}` : 'Дд/Мм' }}
+			<div
+				:class="['Calendar_head', {'open': open.date}, {'filled': choosenDay}]"
+				@click="openCalendar"
+			>
+				<span>{{ choosenDay ? `${choosenDay} ${endMonthsLetter}` : 'Дд/Мм' }}</span>
 				<!--<Icon id="arrow-down" />-->
 				<div class="Arrow-down"></div>
 			</div>
@@ -10,9 +13,13 @@
 				<div :class="['Calendar_content-wrap', 'calendar', {'hidden': !open.date}]">
 					<div class="dateWrapper">
 						<div class="months">
-							<div :class="['months_head', {'open': open.month}]" @click="open.month = !open.month">
-								{{ intermediateMonth ? intermediateMonth : currentMonth }}
+							<div
+								:class="['months_head', {'open': open.month}]"
+								@click="open.month = !open.month"
+							>
+								<span>{{ intermediateMonth ? intermediateMonth : currentMonth }}</span>
 								<!--<Icon id="triangle-small" />-->
+								<div class="Arrow_down-small"></div>
 							</div>
 
 							<div :class="['months_content', {'open': open.month}]">
@@ -49,10 +56,10 @@
 							v-for="(day, idx) of days"
 							:key="idx"
 							:class="[
-										'calendarDays-item', day.class,
-										{'active': day.today}, {'choosen': day.number === choosenDay && choosenMonth === intermediateMonth && day.class === 'filled'},
-										{'past': handlerPastDays(day.number, day.class)}
-									]"
+								'calendarDays-item', day.class,
+								{'active': day.today}, {'choosen': day.number === choosenDay && choosenMonth === intermediateMonth && day.class === 'filled'},
+								{'past': handlerPastDays(day.number, day.class)}
+							]"
 							@click="handlerCalendarDayClick(day.number, day.class)"
 						>
 							{{ day.number }}
@@ -61,9 +68,10 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="Calendar_select Calendar_select-time">
 			<div :class="['Calendar_head', {'open': open.time}, {'filled': values.time}]" @click="open.time = !open.time">
-				{{ values.time ? values.time : 'Чч:Мм' }}
+				<span>{{ values.time ? values.time : 'Чч:Мм' }}</span>
 				<!--<Icon id="arrow-down" />-->
 				<div class="Arrow-down"></div>
 			</div>
@@ -121,7 +129,6 @@ export default {
 		const year = new Date().getFullYear();
 		return {
 			values: {},
-			result: null,
 			agreeActive: false,
 			choosenMonth: '',
 			intermediateMonth: '',
@@ -210,9 +217,7 @@ export default {
 	mounted() {
 		this.$nextTick(() => {
 			if (this.currentMonth) {
-				const currentMonth = new Date().getMonth();
-				this.intermediateMonth = this.currentMonth;
-				this.generateCalendar(currentMonth, this.currentYear);
+				this.setCurrentMonth();
 			}
 		});
 	},
@@ -311,13 +316,24 @@ export default {
 			return result;
 		},
 
+		setCurrentMonth() {
+			const currentMonth = new Date().getMonth();
+			this.intermediateMonth = this.currentMonth;
+			this.choosenMonth = '';
+			this.generateCalendar(currentMonth, this.currentYear);
+		},
+
 		clearChoosenDays() {
-			const realDays = document.querySelectorAll('.calendarDays-item.filled');
+			const realDays = document.querySelectorAll('.calendarDays-item.choosen');
+
 			realDays.forEach((item) => {
 				if (item.classList.contains('choosen')) {
 					item.classList.remove('choosen');
 				}
 			});
+			this.values = {};
+			this.choosenDay = '';
+			this.setCurrentMonth();
 		},
 	},
 }
@@ -334,7 +350,7 @@ export default {
 		position: relative;
 
 		&-date {
-			width: 28rem;
+			width: max-content;
 
 			.Calendar_head {
 				justify-content: flex-start;
@@ -342,7 +358,7 @@ export default {
 		}
 
 		&-time {
-			width: 16rem;
+			width: max-content;
 
 			.Calendar_head {
 				justify-content: flex-end;
@@ -375,7 +391,7 @@ export default {
 
 		&.open {
 			.Arrow-down {
-				transform: translateY(-80%) rotate(225deg);
+				transform: translateY(-50%) rotate(225deg);
 			}
 		}
 
@@ -472,9 +488,24 @@ export default {
 							transition: background .3s ease,
 							color .3s ease;
 
+							.Arrow_down-small {
+								flex-shrink: 0;
+								width: .6rem;
+								height: .6rem;
+								border: 1px solid $gray-300;
+								border-top: 0;
+								border-left: 0;
+								transform: translateY(-50%) rotate(45deg);
+								transition: transform .4s ease;
+							}
+
 							&.open {
 								background-color: $gray-900;
 								color: $black;
+
+								.Arrow_down-small {
+									transform: translateY(-0%) rotate(225deg);
+								}
 
 								.Icon {
 									transform: translateY(-50%) rotate(0deg);

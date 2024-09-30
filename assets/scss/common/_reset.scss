@@ -1,35 +1,36 @@
 div {
-    outline: none;
-    -moz-appearance: none;
-    appearance: none;
+	outline: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+	text-decoration: none;
+	color: inherit;
 }
 
 p {
-    margin-top: 0;
-    margin-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 ul {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
 }
 
 li {
-    list-style: none;
+	list-style: none;
 }
 
 button {
-    padding: 0;
-    border: none;
-    background: transparent;
-    outline: none;
-    color: inherit;
+	padding: 0;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
 }
 
 h1,
@@ -38,35 +39,35 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    font-size: inherit;
-    font-weight: normal;
+	margin: 0;
+	font-size: inherit;
+	font-weight: normal;
 }
 
 img,
 svg {
-    -webkit-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 input {
-    outline: none;
+	outline: none;
 
-    &[type="number"]::-webkit-inner-spin-button,
-    &[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+	&[type="number"]::-webkit-inner-spin-button,
+	&[type="number"]::-webkit-outer-spin-button {
+		margin: 0;
+		-webkit-appearance: none;
+	}
 
-    &[type="time"]::-webkit-clear-button {
-        display: none;
-    }
+	&[type="time"]::-webkit-clear-button {
+		display: none;
+	}
 
-    &::-ms-clear {
-        display: none;
-    }
+	&::-ms-clear {
+		display: none;
+	}
 }
 
 textarea {
-    resize: none;
+	resize: none;
 }

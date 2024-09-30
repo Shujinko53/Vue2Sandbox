@@ -4,18 +4,26 @@
 		<Switcher />
 
 		<Calendar />
+
+		<Heart />
 	</div>
 
 </template>
 
 <script>
-import Switcher from '~/components/common/Switcher';
+import Vue from 'vue';
+import VueAnime from 'vue-animejs';
+import Switcher from '~/components/common/Switcher.vue';
 import Calendar from '@/components/common/Calendar.vue';
+import Heart from "@/components/common/Heart.vue";
+
+Vue.use(VueAnime);
 
 export default {
 	name: 'IndexPage',
 
 	components: {
+		Heart,
 		Switcher,
 		Calendar,
 	},
@@ -45,7 +53,8 @@ export default {
 .Main-page {
 	display: flex;
 	flex-direction: column;
-	row-gap: 6rem;
+	align-items: flex-start;
+	row-gap: 8rem;
 	min-height: 100vh;
 	padding: 4rem;
 }
