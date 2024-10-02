@@ -6,6 +6,8 @@
 		<Calendar />
 
 		<Heart />
+
+		<CardsList />
 	</div>
 
 </template>
@@ -15,7 +17,8 @@ import Vue from 'vue';
 import VueAnime from 'vue-animejs';
 import Switcher from '~/components/common/Switcher.vue';
 import Calendar from '@/components/common/Calendar.vue';
-import Heart from "@/components/common/Heart.vue";
+import Heart from '@/components/common/Heart.vue';
+import CardsList from '@/components/common/CardsList.vue';
 
 Vue.use(VueAnime);
 
@@ -26,6 +29,7 @@ export default {
 		Heart,
 		Switcher,
 		Calendar,
+		CardsList
 	},
 
 	props: {},
