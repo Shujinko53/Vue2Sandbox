@@ -1,6 +1,12 @@
 <template>
-	<button ref="Heart" class="Heart" @click="clickHandler">
-		<svg-icon class="icon-heart" height="4rem" name="heart" width="4rem" />
+	<button class="Heart" @click="clickHandler">
+		<svg-icon
+			ref="Heart"
+			:name="active ? 'black-heart' : 'heart'"
+			class="icon-heart"
+			height="3.6rem"
+			width="4rem"
+		/>
 	</button>
 </template>
 
@@ -17,7 +23,7 @@ export default {
 
 	data() {
 		return {
-			//
+			active: false,
 		};
 	},
 
@@ -27,6 +33,8 @@ export default {
 
 	methods: {
 		clickHandler() {
+			this.active = !this.active;
+
 			const heart = this.$refs.Heart;
 			const heartClone = heart.cloneNode(true);
 			const {top, left} = heart.getBoundingClientRect();
@@ -46,7 +54,7 @@ export default {
 				left: `${Math.random() * (60 - 40) + 40}%`,
 				opacity: 0,
 				easing: 'easeOutCubic',
-				duration: 2000,
+				duration: 2700,
 				complete: () => {
 					heartClone.remove();
 				},
@@ -58,9 +66,28 @@ export default {
 
 <style lang="scss">
 .Heart {
-	.icon-heart {
-		width: 4rem;
-		height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	animation: pulse 2s ease infinite;
+
+	.icon {
+		display: block;
+	}
+
+	@keyframes pulse {
+		0% {
+			background-color: transparent;
+		}
+		50% {
+			background-color: $gray-600;
+		}
+		100% {
+			background-color: transparent;
+		}
 	}
 }
 </style>
