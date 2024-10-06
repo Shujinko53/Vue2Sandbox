@@ -1,5 +1,5 @@
 <template>
-	<div class="AnimateListButton">
+	<div :style="`--GAP: ${gap}px`" class="AnimateListButton">
 		<ul class="AnimateListButton_list">
 			<li
 				v-for="item of list"
@@ -42,7 +42,12 @@ export default {
 					id: 4,
 					text: 'Сравнение',
 				},
+				{
+					id: 5,
+					text: 'Ипотечный калькулятор',
+				},
 			],
+			gap: 60,
 		};
 	},
 
@@ -61,24 +66,33 @@ export default {
 			const list = this.$el.querySelector('.AnimateListButton_list');
 			const items = this.$el.querySelectorAll('.AnimateListButton_list-item');
 			let sum = 0;
+			let prevItemHeight = 0;
 
 			const array = [...items].map((item, idx) => {
-				if (idx > 1) {
-					sum += item.offsetHeight;
+				if (idx > 0) {
+					sum += prevItemHeight + this.gap;
 				}
+
+				if (prevItemHeight > item.offsetHeight) {
+					sum -= (prevItemHeight - item.offsetHeight) / 2;
+				} else if (idx > 0 && item.offsetHeight > prevItemHeight) {
+					sum = sum + (item.offsetHeight - prevItemHeight) / 2;
+				}
+
+				prevItemHeight = item.offsetHeight;
+
 				return {
-					value: `-50% ${-((item.offsetHeight * (idx + 1)) + 40)}px`,
+					value: `-50% -${sum}px`,
 					duration: 1000,
 					delay: 3000
 				};
 			});
+			array.splice(0, 1);
 			console.log(array);
 			this.$anime({
 				targets: list,
 				translate: [
-					{value: '-50% -92px', duration: 1000, delay: 3000},
-					{value: '-50% -174px', duration: 1000, delay: 3000},
-					{value: '-50% -246px', duration: 1000, delay: 3000},
+					...array,
 					{value: '-50% 0px', duration: 1000, delay: 3000}
 				],
 				easing: 'easeOutCubic',
@@ -94,28 +108,25 @@ export default {
 <style lang="scss">
 .AnimateListButton {
 	position: relative;
-
 	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	width: 18rem;
-	height: 110px;
+	height: 12rem;
 	padding: 2rem;
 	box-sizing: border-box;
+	border-radius: 2rem;
 	background-color: $blue;
 	color: $white;
-	--listGap: 60px;
 
 	&_list {
 		position: absolute;
-		top: 35%;
+		top: 34%;
 		left: 50%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		row-gap: var(--listGap);
+		row-gap: var(--GAP);
 		transform-origin: center;
+		//opacity: 0;
 		translate: -50% 0;
 
 		&-item {
@@ -132,11 +143,10 @@ export default {
 				top: 0;
 				left: 0;
 				overflow: hidden;
-				width: 0;
 				width: 100%;
-				border-right: 2px solid $white;
+				//border-right: 2px solid $white;
 				color: $white;
-				//animation: move 4s forwards infinite;
+				//animation: move 3.6s forwards infinite;
 			}
 		}
 	}
@@ -146,7 +156,7 @@ export default {
 			width: 0;
 			opacity: 0;
 		}
-		20% {
+		40% {
 			opacity: 1;
 		}
 		60%,
