@@ -122,9 +122,10 @@ export default {
 		// ----- animation -----
 
 		beforeLeave(el) {
-			const {width, height} = el.getBoundingClientRect();
+			const {width, height, left} = el.getBoundingClientRect();
 
 			Object.assign(el.style, {
+				left: left + 'px',
 				width: width + 'px',
 				height: height + 'px',
 			});
@@ -285,7 +286,7 @@ export default {
 
 		&-enter-from,
 		&-leave-to {
-			transform: translateY(-5%);
+			transform: translateY(-30%);
 			transition: all 1s ease;
 			opacity: 0;
 		}
