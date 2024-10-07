@@ -1,5 +1,5 @@
 <template>
-	<div :style="`--GAP: ${gap}px`" class="AnimateListButton">
+	<div v-inter-class="'intersection'" :style="`--GAP: ${gap}px`" class="AnimateListButton">
 		<ul class="AnimateListButton_list">
 			<li
 				v-for="item of list"
@@ -87,8 +87,9 @@ export default {
 					delay: 3000
 				};
 			});
+
 			array.splice(0, 1);
-			console.log(array);
+
 			this.$anime({
 				targets: list,
 				translate: [
@@ -116,6 +117,14 @@ export default {
 	border-radius: 2rem;
 	background-color: $blue;
 	color: $white;
+	opacity: 0;
+	transform: translateY(-30%);
+	transition: opacity 1s ease, transform 1s ease;
+
+	&.intersection {
+		opacity: 1;
+		transform: translateY(0);
+	}
 
 	&_list {
 		position: absolute;

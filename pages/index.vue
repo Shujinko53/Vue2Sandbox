@@ -62,7 +62,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	row-gap: 8rem;
+	row-gap: 16rem;
 	min-height: 100vh;
 	padding: 4rem;
 }
