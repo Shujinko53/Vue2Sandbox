@@ -111,7 +111,7 @@ export default {
 	overflow: hidden;
 	width: 18rem;
 	height: 12rem;
-	padding: 2rem;
+	padding: 2rem 1rem;
 	box-sizing: border-box;
 	border-radius: 2rem;
 	background-color: $blue;
@@ -132,9 +132,11 @@ export default {
 		&-item {
 			position: relative;
 			width: min-content;
-			font-size: 1.6rem;
+			font-family: 'TT Commons Pro';
+			font-size: 1.8rem;
 			text-align: center;
-			text-transform: uppercase;
+			letter-spacing: .02em;
+			//text-transform: none;
 			color: transparent;
 
 			&:before {
