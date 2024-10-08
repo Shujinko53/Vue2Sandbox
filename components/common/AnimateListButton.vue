@@ -1,5 +1,9 @@
 <template>
-	<div v-inter-class.once="'intersection'" :style="`--GAP: ${gap}px`" class="AnimateListButton">
+	<div
+		v-inter-class.once="'intersection'"
+		:style="`--GAP: ${gap}px`"
+		class="AnimateListButton"
+	>
 		<ul class="AnimateListButton_list">
 			<li
 				v-for="item of list"
@@ -145,7 +149,7 @@ export default {
 			font-size: 1.8rem;
 			text-align: center;
 			letter-spacing: .02em;
-			//text-transform: none;
+			text-transform: uppercase;
 			color: transparent;
 
 			&:before {

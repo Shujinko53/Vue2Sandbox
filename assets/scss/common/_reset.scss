@@ -1,3 +1,27 @@
+/*
+ ** Данный файл содержит дефолтные стили, дополняющие normalize.css.
+ ** Крайне не рекомендуется вносить здесь какие либо изменения.
+ */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: $base-font;
+	font-size: $base-font-size;
+	color: $black;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
+}
+
 div {
 	outline: none;
 	-moz-appearance: none;
@@ -24,30 +48,23 @@ li {
 	list-style: none;
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
 button {
 	padding: 0;
 	border: none;
 	outline: none;
 	background: transparent;
 	color: inherit;
-	cursor: pointer;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0;
-	font-size: inherit;
-	font-weight: normal;
-}
-
-img,
-svg {
-	-webkit-user-select: none;
-	user-select: none;
 }
 
 input {
@@ -70,4 +87,25 @@ input {
 
 textarea {
 	resize: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font-size: inherit;
+	font-weight: normal;
+}
+
+address {
+	font-style: normal;
+}
+
+img,
+svg {
+	-webkit-user-select: none;
+	user-select: none;
 }

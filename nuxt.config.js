@@ -43,6 +43,15 @@ export default {
 		'@nuxtjs/svg-sprite',
 	],
 
+	// Stylelint options
+	stylelint: {
+		files: [
+			'assets/**/*.{s?(a|c)ss}',
+			'**/components/**/*.{s?(a|c)ss}',
+			'**/{components,layouts,services}/**/*.vue',
+		],
+	},
+
 	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {}
 }

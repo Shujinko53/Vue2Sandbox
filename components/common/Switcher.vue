@@ -76,12 +76,13 @@ export default {
 			const blockWidth = Math.round(block.getBoundingClientRect().width);
 			const activeItemWidth = element?.target.getBoundingClientRect().width;
 			const activeItemLeft = element?.target.offsetLeft;
+			const activeItemRight = blockWidth - activeItemLeft - activeItemWidth;
 			const roller = this.$el.querySelector('.Switcher_roller');
 			const rollerLeft = roller.offsetLeft;
 
 			Object.assign(roller.style, {
 				left: `${activeItemLeft}px`,
-				right: `${blockWidth - activeItemLeft - activeItemWidth}px`,
+				right: `${activeItemRight}px`,
 				transitionDelay: `${activeItemLeft > rollerLeft ? '0s, 0.2s' : '0.2s, 0s'}`,
 			});
 		},
@@ -151,11 +152,11 @@ export default {
 	&_item {
 		position: relative;
 		z-index: 2;
-		padding: 1.8rem 3.8rem;
+		padding: 1.4rem 3.4rem;
 		box-sizing: border-box;
 		border-radius: 4rem;
 		background-color: transparent;
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		font-weight: 600;
 		line-height: 1;
 		text-align: center;

@@ -4,8 +4,8 @@
 			ref="Heart"
 			:name="active ? 'black-heart' : 'heart'"
 			class="icon-heart"
-			height="3.6rem"
-			width="4rem"
+			height="3.2rem"
+			width="3.6rem"
 		/>
 	</button>
 </template>
@@ -69,10 +69,11 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 5rem;
-	height: 5rem;
+	width: 4.6rem;
+	height: 4.6rem;
 	border-radius: 50%;
 	animation: pulse 2s ease infinite;
+	cursor: pointer;
 
 	.icon {
 		display: block;

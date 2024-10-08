@@ -371,7 +371,7 @@ export default {
 		align-items: center;
 		column-gap: 1.6rem;
 		font-family: 'TT Commons Pro';
-		font-size: 5.5rem;
+		font-size: 4.6rem;
 		font-weight: 500;
 		line-height: 8.1rem;
 		white-space: nowrap;
@@ -560,11 +560,11 @@ export default {
 
 				.weekDays {
 					display: grid;
+					grid-template-columns: repeat(7, 1fr);
 					gap: .8rem;
 					margin: 0 0 .6rem;
 					padding: 0;
 					font-size: 1.6rem;
-					grid-template-columns: repeat(7, 1fr);
 
 					.weekDay {
 						width: 2.2rem;

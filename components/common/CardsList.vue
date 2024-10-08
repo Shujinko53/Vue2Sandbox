@@ -142,7 +142,7 @@ export default {
 
 	&_wrapper {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(36rem, 1fr));
 		gap: 4rem;
 		padding-right: 10rem;
 	}
@@ -152,25 +152,24 @@ export default {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
-		height: 54rem;
-		padding: 2.4rem;
+		height: 50rem;
+		padding: 2rem;
 		background-color: $gray-100;
 		box-shadow: 0 0 1.4rem .2rem $black-100;
-		font-size: 2.4rem;
+		font-size: 2rem;
 		font-weight: 700;
-		text-transform: none;
 		transition: all 1s ease;
 
 		.btn-close {
 			position: absolute;
-			top: 2.8rem;
-			right: 2.8rem;
+			top: 2.6rem;
+			right: 2.6rem;
 			transition: opacity .3s ease;
 
 			.icon-close {
 				display: block;
-				width: 2rem;
-				height: 2rem;
+				width: 1.6rem;
+				height: 1.6rem;
 				transition: opacity .2s ease-in-out, scale .1s ease-in-out;
 				cursor: pointer;
 			}
@@ -286,9 +285,9 @@ export default {
 
 		&-enter-from,
 		&-leave-to {
+			opacity: 0;
 			transform: translateY(-30%);
 			transition: all 1s ease;
-			opacity: 0;
 		}
 
 		&-leave-active {

@@ -45,7 +45,7 @@ export default {
 
 	.text {
 		width: 60rem;
-		font-size: 2.4rem;
+		font-size: 1.8rem;
 		text-transform: none;
 		transition: clip-path 1.5s ease-in-out;
 		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
