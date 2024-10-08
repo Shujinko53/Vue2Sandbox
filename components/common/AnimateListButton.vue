@@ -1,5 +1,5 @@
 <template>
-	<div v-inter-class="'intersection'" :style="`--GAP: ${gap}px`" class="AnimateListButton">
+	<div v-inter-class.once="'intersection'" :style="`--GAP: ${gap}px`" class="AnimateListButton">
 		<ul class="AnimateListButton_list">
 			<li
 				v-for="item of list"

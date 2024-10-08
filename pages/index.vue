@@ -10,6 +10,8 @@
 		<CardsList />
 
 		<AnimateListButton />
+
+		<ClipPathAnimation />
 	</div>
 
 </template>
@@ -22,6 +24,7 @@ import Calendar from '@/components/common/Calendar.vue';
 import Heart from '@/components/common/Heart.vue';
 import CardsList from '@/components/common/CardsList.vue';
 import AnimateListButton from '@/components/common/AnimateListButton.vue';
+import ClipPathAnimation from '@/components/common/ClipPathAnimation.vue';
 
 Vue.use(VueAnime);
 
@@ -33,7 +36,8 @@ export default {
 		Switcher,
 		Calendar,
 		CardsList,
-		AnimateListButton
+		AnimateListButton,
+		ClipPathAnimation
 	},
 
 	props: {},

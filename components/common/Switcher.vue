@@ -119,9 +119,7 @@ export default {
 .Switcher {
 	position: relative;
 	overflow: hidden;
-	display: flex;
 	width: max-content;
-	border-radius: 4rem;
 	user-select: none;
 
 	&_wrapper {
