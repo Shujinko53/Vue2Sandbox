@@ -12,6 +12,8 @@
 		<AnimateListButton />
 
 		<ClipPathAnimation />
+
+		<MouseBlock />
 	</div>
 
 </template>
@@ -23,6 +25,7 @@ import Heart from '@/components/common/Heart.vue';
 import CardsList from '@/components/common/CardsList.vue';
 import AnimateListButton from '@/components/common/AnimateListButton.vue';
 import ClipPathAnimation from '@/components/common/ClipPathAnimation.vue';
+import MouseBlock from '@/components/common/MouseBlock.vue';
 
 export default {
 	name: 'IndexPage',
@@ -33,7 +36,8 @@ export default {
 		Calendar,
 		CardsList,
 		AnimateListButton,
-		ClipPathAnimation
+		ClipPathAnimation,
+		MouseBlock
 	},
 
 	props: {},
@@ -49,11 +53,9 @@ export default {
 	},
 
 	mounted() {
-		this.$nuxt.$on('mouseTrail', this.getCursorCoords);
 	},
 
 	beforeDestroy() {
-		this.$nuxt.$off('mouseTrail', this.getCursorCoords);
 	},
 
 	methods: {
