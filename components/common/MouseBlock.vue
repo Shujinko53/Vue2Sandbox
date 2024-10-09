@@ -3,7 +3,6 @@
 		class="MouseBlock"
 		@mouseenter="hover"
 		@mouseleave="hover"
-		@mousemove="mouseMove($event)"
 	>
 		<p class="coords" v-html="`${mouseX} : ${mouseY}`"></p>
 		<p class="coords-block" v-html="`${block.width ?? 0} : ${block.height ?? 0}`"></p>
@@ -13,6 +12,7 @@
 			:style="{
 			'--mouse-x': mouseX + 'px',
 			'--mouse-y': mouseY + 'px',
+			'transform': `translate(${translateX ? `calc(-${100}% - ${offsetX * 2}px)` : 0}, ${translateY ? `calc(-${100}% - ${offsetY * 2}px)` : 0})`,
 		}"
 		>
 			<h3 class="card_title">Lorem ipsum dolor.</h3>
@@ -42,8 +42,10 @@ export default {
 			mouseY: 0,
 			element: {},
 			block: {},
-			offsetY: 10,
-			offsetX: 10,
+			offsetY: 20,
+			offsetX: 20,
+			translateX: false,
+			translateY: false,
 		};
 	},
 
@@ -56,11 +58,11 @@ export default {
 	},
 
 	mounted() {
-		// this.$nuxt.$on('mouseTrail', this.getCursorCoords);
+		this.$nuxt.$on('mouseTrail', this.getCursorCoords);
 	},
 
 	beforeDestroy() {
-		// this.$nuxt.$off('mouseTrail', this.getCursorCoords);
+		this.$nuxt.$off('mouseTrail', this.getCursorCoords);
 	},
 
 	methods: {
@@ -85,13 +87,33 @@ export default {
 		},
 
 		getCursorCoords(coords) {
-			this.mouseX = coords.x * window.innerWidth;
-			this.mouseY = coords.y * window.innerHeight;
+			const block = document.querySelector('.MouseBlock');
+			const {width, height} = block.getBoundingClientRect();
+
+			this.mouseX = coords.x * window.innerWidth + this.offsetX - block.offsetLeft;
+			this.mouseY = coords.y * window.innerHeight + this.offsetY - block.offsetTop;
+
+			// if ((width - this.mouseX) < this.element.width) {
+			// 	this.mouseX -= this.element.width + this.offsetX + block.offsetLeft;
+			// }
+
+			this.translateX = (width - this.mouseX) < this.element.width;
+			this.translateY = (height - this.mouseY) < this.element.height;
+
+			// if ((height - this.mouseY) < this.element.height) {
+			// 	this.mouseY -= this.element.height + this.offsetY * 2;
+			// }
 		},
 
 		mouseMove(coords) {
-			this.mouseX = coords.layerX + this.offsetX;
-			this.mouseY = coords.layerY + this.offsetY;
+			this.pageX = coords.pageX;
+			this.pageY = coords.pageY;
+			// const leftDifference = this.block.width - (coords.layerX + this.offsetX);
+			// const bottomDifference = this.block.height - (coords.layerY + this.offsetY);
+			//
+			// this.mouseX = leftDifference > (this.element.width + this.offsetX) ? coords.layerX + this.offsetX : coords.layerX - this.offsetX - this.element.width;
+			//
+			// this.mouseY = bottomDifference > (this.element.height + this.offsetY) ? coords.layerY + this.offsetY : coords.layerY - this.offsetY - this.element.height;
 		},
 	},
 }
@@ -102,7 +124,7 @@ export default {
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	height: 90rem;
+	height: 100vh;
 	border: 1px solid $black-100;
 	background-color: $gray-700;
 	--card-width: 30rem;
@@ -139,7 +161,8 @@ export default {
 		height: var(--card-height);
 		padding: 2rem;
 		background-color: $white;
-		transition: opacity .4s ease;
+		transition: opacity .4s ease, transform 1s ease;
+		will-change: opacity, transform;
 		pointer-events: none;
 
 		&.hidden {

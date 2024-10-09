@@ -1,6 +1,7 @@
 <template>
 	<div class="Main-page">
 		<!--	<Tutorial/>/-->
+
 		<Switcher />
 
 		<Calendar />
@@ -72,6 +73,7 @@ export default {
 	flex-direction: column;
 	align-items: flex-start;
 	row-gap: 12rem;
+	width: 100%;
 	min-height: 100vh;
 	padding: 4rem;
 }

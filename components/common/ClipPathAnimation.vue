@@ -44,7 +44,7 @@ export default {
 	}
 
 	.text {
-		width: 60rem;
+		max-width: 60rem;
 		font-size: 1.8rem;
 		text-transform: none;
 		transition: clip-path 1.5s ease-in-out;
