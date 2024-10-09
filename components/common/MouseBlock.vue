@@ -4,9 +4,6 @@
 		@mouseenter="hover"
 		@mouseleave="hover"
 	>
-		<p class="coords" v-html="`${mouseX} : ${mouseY}`"></p>
-		<p class="coords-block" v-html="`${block.width ?? 0} : ${block.height ?? 0}`"></p>
-
 		<div
 			:class="['card', {'hidden': !hovered}]"
 			:style="{
@@ -93,27 +90,8 @@ export default {
 			this.mouseX = coords.x * window.innerWidth + this.offsetX - block.offsetLeft;
 			this.mouseY = coords.y * window.innerHeight + this.offsetY - block.offsetTop;
 
-			// if ((width - this.mouseX) < this.element.width) {
-			// 	this.mouseX -= this.element.width + this.offsetX + block.offsetLeft;
-			// }
-
 			this.translateX = (width - this.mouseX) < this.element.width;
 			this.translateY = (height - this.mouseY) < this.element.height;
-
-			// if ((height - this.mouseY) < this.element.height) {
-			// 	this.mouseY -= this.element.height + this.offsetY * 2;
-			// }
-		},
-
-		mouseMove(coords) {
-			this.pageX = coords.pageX;
-			this.pageY = coords.pageY;
-			// const leftDifference = this.block.width - (coords.layerX + this.offsetX);
-			// const bottomDifference = this.block.height - (coords.layerY + this.offsetY);
-			//
-			// this.mouseX = leftDifference > (this.element.width + this.offsetX) ? coords.layerX + this.offsetX : coords.layerX - this.offsetX - this.element.width;
-			//
-			// this.mouseY = bottomDifference > (this.element.height + this.offsetY) ? coords.layerY + this.offsetY : coords.layerY - this.offsetY - this.element.height;
 		},
 	},
 }
@@ -131,24 +109,6 @@ export default {
 	--card-height: 40rem;
 	--translate-x: 0.1;
 	--translate-y: 0.1;
-
-	.coords {
-		position: absolute;
-		top: 0;
-		right: 0;
-		font-size: 2.6rem;
-		color: $white;
-		pointer-events: none;
-
-		&-block {
-			position: absolute;
-			top: 4rem;
-			right: 0;
-			font-size: 2.6rem;
-			color: $white;
-			pointer-events: none;
-		}
-	}
 
 	.card {
 		position: absolute;
