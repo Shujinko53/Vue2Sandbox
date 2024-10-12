@@ -50,7 +50,6 @@ export default {
 	},
 	methods: {
 		calcPosition() {
-			console.log(this.pageX, '\n=> ', this.width, '\n=> ', this.positions.x)
 			this.positions.x += ((this.pageX / this.width) - this.positions.x) * this.decay;
 			this.positions.y += ((this.pageY / this.height) - this.positions.y) * this.decay;
 			if (Math.abs(this.positions.x - this.positions.prev.x) > this.delta || Math.abs(this.positions.y - this.positions.prev.y) > this.delta) {
