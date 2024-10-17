@@ -6,7 +6,11 @@
 
 		<Calendar />
 
-		<Heart />
+		<div class="buttons-wrapper">
+			<Heart />
+
+			<HoverAnimationButton />
+		</div>
 
 		<CardsList />
 
@@ -27,11 +31,13 @@ import CardsList from '@/components/common/CardsList.vue';
 import AnimateListButton from '@/components/common/AnimateListButton.vue';
 import ClipPathAnimation from '@/components/common/ClipPathAnimation.vue';
 import MouseBlock from '@/components/common/MouseBlock.vue';
+import HoverAnimationButton from '@/components/common/HoverAnimationButton.vue';
 
 export default {
 	name: 'IndexPage',
 
 	components: {
+		HoverAnimationButton,
 		Heart,
 		Switcher,
 		Calendar,
@@ -76,5 +82,11 @@ export default {
 	width: 100%;
 	min-height: 100vh;
 	padding: 4rem;
+
+	.buttons-wrapper {
+		display: flex;
+		align-items: center;
+		column-gap: 4rem;
+	}
 }
 </style>
