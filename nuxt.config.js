@@ -12,7 +12,21 @@ export default {
 			{name: 'format-detection', content: 'telephone=no'}
 		],
 		link: [
-			{rel: 'icon', type: 'image/x-icon', href: 'favicons/favicon.ico'}
+			{rel: 'icon', type: 'image/x-icon', href: 'favicons/favicon.ico'},
+			{
+				rel: 'preload',
+				as: 'font',
+				type: 'font/woff2',
+				crossorigin: 'anonymous',
+				href: 'assets/fonts/TTCommons-Medium.woff2'
+			},
+			{
+				rel: 'preload',
+				as: 'font',
+				type: 'font/woff2',
+				crossorigin: 'anonymous',
+				href: 'assets/fonts/GHEA-Grapalat-Regular.woff2'
+			}
 		]
 	},
 
@@ -29,6 +43,14 @@ export default {
 		'@/plugins/vue-touch',
 		'@/plugins/directives'
 	],
+
+	render: {
+		bundleRenderer: {
+			shouldPreload: (file, type) => {
+				return ['script', 'style', 'font'].includes(type)
+			}
+		}
+	},
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
