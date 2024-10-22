@@ -6,6 +6,8 @@
 
 		<Calendar />
 
+		<FlipCard />
+
 		<div class="buttons-wrapper">
 			<Heart />
 
@@ -26,6 +28,7 @@
 <script>
 import Switcher from '~/components/common/Switcher.vue';
 import Calendar from '@/components/common/Calendar.vue';
+import FlipCard from '@/components/common/FlipCard.vue';
 import Heart from '@/components/common/Heart.vue';
 import CardsList from '@/components/common/CardsList.vue';
 import AnimateListButton from '@/components/common/AnimateListButton.vue';
@@ -37,6 +40,7 @@ export default {
 	name: 'IndexPage',
 
 	components: {
+		FlipCard,
 		HoverAnimationButton,
 		Heart,
 		Switcher,
@@ -66,9 +70,7 @@ export default {
 	},
 
 	methods: {
-		getCursorCoords(coords) {
-			console.log(' coords => ', coords.x, '\n ', coords.y);
-		},
+		//
 	},
 }
 </script>
