@@ -12,7 +12,7 @@
 			>
 				<h3 class="CardsList_item_title" v-html="card.title"></h3>
 
-				<button :class="['btn-close', {'disabled': lastCardLeft}]"
+				<button :class="['btn-close', { 'disabled': lastCardLeft }]"
 						@click="removeCard(idx)"
 				>
 					<svg-icon class="icon-close" name="close" />
@@ -36,13 +36,13 @@
 		</transition-group>
 
 		<div class="controls-panel">
-			<button :class="['controls-panel_btn', {'disabled': lastCardLeft}]"
+			<button :class="['controls-panel_btn', { 'disabled': lastCardLeft }]"
 					@click="removeCard(cards.length - 1)"
 			>
 				<span class="hor"></span>
 			</button>
 
-			<button :class="['controls-panel_btn', {'disabled': limitReached}]"
+			<button :class="['controls-panel_btn', { 'disabled': limitReached }]"
 					@click="addCard"
 			>
 				<span class="hor"></span>
@@ -122,7 +122,7 @@ export default {
 		// ----- animation -----
 
 		beforeLeave(el) {
-			const {width, height, left} = el.getBoundingClientRect();
+			const { width, height, left } = el.getBoundingClientRect();
 
 			Object.assign(el.style, {
 				left: left + 'px',
@@ -235,8 +235,8 @@ export default {
 			user-select: none;
 			color: $white;
 			transition: background-color .3s ease,
-			opacity .3s ease,
-			scale .1s ease-in-out;
+				opacity .3s ease,
+				scale .1s ease-in-out;
 			cursor: pointer;
 
 			&:hover {

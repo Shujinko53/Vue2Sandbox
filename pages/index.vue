@@ -21,6 +21,10 @@
 		<ClipPathAnimation />
 
 		<MouseBlock />
+
+		<AnimateDelayList />
+
+		<ColumnAnimationCards />
 	</div>
 
 </template>
@@ -35,11 +39,15 @@ import AnimateListButton from '@/components/common/AnimateListButton.vue';
 import ClipPathAnimation from '@/components/common/ClipPathAnimation.vue';
 import MouseBlock from '@/components/common/MouseBlock.vue';
 import HoverAnimationButton from '@/components/common/HoverAnimationButton.vue';
+import AnimateDelayList from "@/components/common/AnimateDelayList.vue";
+import ColumnAnimationCards from "@/components/common/ColumnAnimationCards.vue";
 
 export default {
 	name: 'IndexPage',
 
 	components: {
+		ColumnAnimationCards,
+		AnimateDelayList,
 		FlipCard,
 		HoverAnimationButton,
 		Heart,

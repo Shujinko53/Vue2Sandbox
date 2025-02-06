@@ -53,7 +53,7 @@ export default {
 	justify-content: center;
 	width: 7rem;
 	height: 5rem;
-	border-radius: 2rem;
+	border-radius: 3rem;
 	background: linear-gradient(to bottom, $blue 50%, $light-green 55%) 0 0;
 	background-size: 100% 230%;
 	user-select: none;

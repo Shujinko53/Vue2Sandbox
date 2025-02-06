@@ -20,8 +20,8 @@
 
 	&-enter-from,
 	&-leave-to {
-		transition: opacity 1.3s ease;
 		opacity: 0;
+		transition: opacity 1.3s ease;
 	}
 }
 
@@ -32,6 +32,20 @@
 
 .appear-enter,
 .appear-leave-active {
-	transform: translateY(64px);
 	opacity: 0;
+	transform: translateY(64px);
+}
+
+.list {
+	&-move,
+	&-enter-active,
+	&-leave-active {
+		transition: all 1s ease;
+	}
+
+	&-enter-from,
+	&-leave-to {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
 }
